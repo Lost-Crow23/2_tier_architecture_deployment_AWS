@@ -1,11 +1,14 @@
-2 tier app deployment 
+2 - tier architecture deployment in AWS 
 
 Diagram 
 
 
 Delpoying our steps and goals:
 
-
+- Copying our provisions codes/app to the AWS ec2 instances
+- Installing our node Dependencies for the node app (NGINX)
+- NPM install or NPM start
+- Node app with the public port 3000 should therefore pop the NGINX configuration
 
 Step 1
 
@@ -14,6 +17,14 @@ Make a new instance in AWS with the same ubuntu 20.4 or 18.4 for less hassle in 
 - Making an App instance.
 
 - Connect the instance to the local host using the right security group, ssh and http groups. 
+
+Security Group should be as follows:
+
+- Select the instance and go to SG
+
+- "Edit inbound rules"
+
+- Add new rule: Custom TCP, Set Port 3000, Source "IPv4 from anywhere (0.0.0.0)", Save rule.
 
 - 1. From your admin git bash terminal use the `.ssh` command to get into the tech221.pem file by the .ssh folder.
 
@@ -24,7 +35,9 @@ Make a new instance in AWS with the same ubuntu 20.4 or 18.4 for less hassle in 
 Step 2
 
 Connecting the app and copying our app folder from our `.ssh` into our AWS ubuntu instance folder.
+
 - To get pathway use `cd` then `pwd` to return to directory pathway (or use VScode to get pathway from the folder).
+
 - `scp` command into the `.ssh` folder in the git bash local host terminal not the ec2 ubuntu app terminal.
 
 Hint: use the SCP command (secure copy)
@@ -42,6 +55,12 @@ Hint: use the SCP command (secure copy)
 Final SCP - 
 
 `scp -i ~/.ssh/tech221.pem -r /Users/Admin/Documents/Virtualisation/app ubuntu@ec2-52-51-76-210.eu-west-1.compute.amazonaws.com:/home/ubuntu/`
+
+Step 3
+
+- Install Required Dependencies for node app in your AWS App git bash terminal.
+
+`sudo apt update -y` , `sudo apt upgrade -y` , 
 
 Setting up the app instance: 
 SSH in to the instance using the information given in the ec2 dashboard
