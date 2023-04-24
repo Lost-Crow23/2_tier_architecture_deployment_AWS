@@ -250,5 +250,16 @@ Set the database location as an env variable:
 
 - Copy and paste the App Instance IP address to check if the post page works along with mongodb
 
+<img width="1434" alt="52 51 76 210 posts reverse proxy" src="https://user-images.githubusercontent.com/126012715/234131494-cbb738c5-b8b2-4e7b-b3fe-0159f9f54232.png">
 
+<h3>App Instance Security Group</h3>
 
+Setting up security permissions.
+
+<img width="835" alt="App sg" src="https://user-images.githubusercontent.com/126012715/234132985-f02be7df-4b7e-4e17-94eb-f2cc733f8a6a.png">
+
+<h3>DB instance Security Group</h3>
+
+<img width="836" alt="db SG" src="https://user-images.githubusercontent.com/126012715/234133009-986a5726-6830-4f2a-a1ea-301f4c25b34b.png">
+
+ 
