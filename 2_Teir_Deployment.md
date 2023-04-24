@@ -113,18 +113,18 @@ Then you'll need to create a new default file with the following properties:
 
 `server_IP` EC2 IP address
 
-  server {
-     listen 80;
-     server_name <server_IP>;
+   server {
+      listen 80;
+      server_name <server_IP>;
 
-     location / {
-         proxy_pass http://<server_IP>:3000;
-         proxy_set_header Host $host;
-         proxy_set_header X-Real-IP $remote_addr;
-         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-         proxy_set_header X-Forwarded-Proto $scheme;
-   }
-}
+      location / {
+          proxy_pass http://<server_IP>:3000;
+          proxy_set_header Host $host;
+          proxy_set_header X-Real-IP $remote_addr;
+          proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+          proxy_set_header X-Forwarded-Proto $scheme;
+     }
+  }
 
 - `Cntrl+x` to exit and `y` to save and `enter` to save the name and exit
 
