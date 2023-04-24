@@ -190,26 +190,55 @@ Step 4
 
 Use the following commands to install MongoDB within the db instance.
 
- sudo apt update -y 
+`sudo apt update -y` 
 
- sudo apt upgrade -y
+`sudo apt upgrade -y`
 
- sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv D68FA50FEA312927
+`sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv D68FA50FEA312927`
 
- echo "deb https://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.2 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.2.list
+`echo "deb https://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.2 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.2.list`
 
- sudo apt update -y 
+`sudo apt update -y` 
 
- sudo apt upgrade -y
+`sudo apt upgrade -y`
 
- sudo apt-get install -y mongodb-org=3.2.20 mongodb-org-server=3.2.20 mongodb-org-shell=3.2.20 mongodb-org-mongos=3.2.20 mongodb-org-tools=3.2.20
+`sudo apt-get install -y mongodb-org=3.2.20 mongodb-org-server=3.2.20 mongodb-org-shell=3.2.20 mongodb-org-mongos=3.2.20 mongodb-org-tools=3.2.20
 
- sudo systemctl start mongod
+`sudo systemctl start mongod`
 
-Set the database location as an env variable:
+`sudo systemctl status mongod`
 
-`sudo nginx -t`
 
-`cd /home/vagrant/`
+DB Machine and App Machine Connection
+
+DB instance
+
+- 1. `cd /etc/`
+- 2. `sudo nano mongod.conf` , Scroll down and configure `bindip` to `0.0.0.0`
+- 3. Save (cntrl+x , y) and exit file (Enter)
+- 4. `sudo systemctl restart mongod`, restart mongod
+- 5. `sudo systemctl enable mongod`, enable mongod
+- 6. `sudo systemctl status mongod`, Check if running
+
+App instance
+
+- 1. `cd` back to home folder
+- 2. `sudo nano .bashrc` , Create environment variable within the .bashrc file
 
 `export DB_HOST=mongodb://[ip of db instance]:27017/posts`
+
+- Connect to mongodb database at the specific IP address (e.g db instance) that is assigned and the through to the posts.
+Set the database location as an env variable:
+
+- 3. `source .bashrc` , updates and applies to the changes within .bashrc file
+- 4. `printenv DB_HOST` e.g `mongodb://54.78.135.221:27017/posts` to check the changes to the variable.
+- 5. `cd app`
+- 6. `node seeds/seed.js` - seed data to database
+- 7. `node app.js`
+
+Final Step
+
+- Copy and paste the App Instance IP address to check if the post page works along with mongodb
+
+
+
