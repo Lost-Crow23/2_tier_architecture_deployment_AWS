@@ -1,16 +1,16 @@
-2 - tier architecture deployment in AWS 
+<h1>2 - tier architecture deployment in AWS</h1>
 
 Diagram 
 
 
-Delpoying our steps and goals:
+<h2>Delpoying our steps and goals:</h2>
 
 - Copying our provisions codes/app to the AWS ec2 instances
 - Installing our node Dependencies for the node app (NGINX)
 - NPM install or NPM start
 - Node app with the public port 3000 should therefore pop the NGINX configuration
 
-Step 1
+<h4>Step 1</h4>
 
 Make a new instance in AWS with the same ubuntu 20.4 or 18.4 for less hassle in the future (used the third down from the "Browse AMI")
  
@@ -32,7 +32,7 @@ Security Group should be as follows:
 
 - 2. Open another terminal and get into the `.ssh` folder from admin / local host.
 
-Step 2
+<h4>Step 2</h4>
 
 Connecting the app and copying our app folder from our `.ssh` into our AWS ubuntu instance folder.
 
@@ -52,11 +52,11 @@ Hint: use the SCP command (secure copy)
 - 4. Ubuntu@ec2 (with ip address), uses the ssh login and the ec2 public dns
 - 5. :home/ubuntu, specifies where the copied file will go on the remote server
 
-Final SCP - 
+<h4>Final SCP -</h4>
 
 `scp -i ~/.ssh/tech221.pem -r /Users/Admin/Documents/Virtualisation/app ubuntu@ec2-52-51-76-210.eu-west-1.compute.amazonaws.com:/home/ubuntu/`
 
-Step 3
+<h4>Step 3</h4>
 
 - Install Required Dependencies for node app in your AWS App git bash terminal.
 
@@ -68,14 +68,14 @@ Step 3
 NPM start 
 - Run `node app.js` to start app
 
-Final Step
+<h4>Final Step</h4>
 
 App is now available on port 3000
 
 - Copy the App Instance IPv4 address and paste in the browser
 - Add `:3000` at the end like so 
 
-Setting up the app instance: 
+<h3>Setting up the app instance</h3>
 
 SSH in to the instance using the information given in the ec2 dashboard
 
@@ -95,9 +95,9 @@ Installs pm2 globally: `sudo npm install pm2 -y -g`
 
 Checks status of nginx: `systemctl status nginx`
 
-Setting up the reverse proxy
+<h2>Setting up the reverse proxy</h2>
 
-Step 1
+<h4>Step 1</h4>
 
 - `Cd` to the below folder to navigate inside the nginx configuration folder
 
@@ -128,20 +128,20 @@ Then you'll need to create a new default file with the following properties:
 
 - `Cntrl+x` to exit and `y` to save and `enter` to save the name and exit
 
-Step 2
+<h4>Step 2</h4>
 
 - Enabling through a symbolic link to enable a new config file.
 - Our `default` is our config file we just created as above.
 
 `sudo ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default`
 
-Step 2.2
+<h4>Step 2.2</h4>
 
 If `failed to create symbolic link, file exists` we can unlink the file and link it again.
 
 `sudo unlink /etc/nginx/sites-enabled/default`
 
-Step 3
+<h4>Step 3</h4>
 
 - `sudo nginx -t` to check errors in the configuration
 - `sudo systemctl reload nginx` , reload Nginx
@@ -160,7 +160,7 @@ Debugging !
 
 Use the following commands as above if errors occur.
 
-Setting up the DB instance
+<h2>Setting up the DB instance</h2>
 
 Optional After-preparation once inside instance in terminal (If bind IP is also implemented as mongod.conf and to use the provisiondb.sh)
 
@@ -169,24 +169,24 @@ Optional After-preparation once inside instance in terminal (If bind IP is also 
 
 Add picture
 
-Step 1 
+<h4>Step 1</h4>
 
 - Create a new AWS db instance.
 - 1. OS ubuntu 18.04 (20.04 does not allow mongodb to be installed)
 
-Step 2
+<h4>Step 2</h4>
 
 - Editing our Security group
 - Add an SSH key connection with your "IP"
 - Add Custom TCP connection with the port being `27017` (Mongodb) and IP as `anywhere, 0.0.0.0`
 - Add Custom TCP connection with the port being 3000 (Sparta App) and IP as `anywhere, 0.0.0.0`
 
-Step 3
+<h4>Step 3</h4>
 
 - Launch Instance
 - Connect instance using SSH connection and Git Bash terminal
 
-Step 4
+<h4>Step 4</h4>
 
 Use the following commands to install MongoDB within the db instance.
 
@@ -208,11 +208,10 @@ Use the following commands to install MongoDB within the db instance.
 
 `sudo systemctl status mongod`
 
+<h2>DB Machine and App Machine Connection</h2>
 
-DB Machine and App Machine Connection
-
-DB instance
-
+<h3>DB instance</h3>
+ 
 - 1. `cd /etc/`
 - 2. `sudo nano mongod.conf` , Scroll down and configure `bindip` to `0.0.0.0`
 - 3. Save (cntrl+x , y) and exit file (Enter)
@@ -220,7 +219,7 @@ DB instance
 - 5. `sudo systemctl enable mongod`, enable mongod
 - 6. `sudo systemctl status mongod`, Check if running
 
-App instance
+<h3>App instance</h3>
 
 - 1. `cd` back to home folder
 - 2. `sudo nano .bashrc` , Create environment variable within the .bashrc file
@@ -236,7 +235,7 @@ Set the database location as an env variable:
 - 6. `node seeds/seed.js` - seed data to database
 - 7. `node app.js`
 
-Final Step
+<h4>Final Step</h4>
 
 - Copy and paste the App Instance IP address to check if the post page works along with mongodb
 
