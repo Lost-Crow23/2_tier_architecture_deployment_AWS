@@ -33,18 +33,30 @@ Hint: use the SCP command (secure copy)
 Final SCP - `scp -i ~/.ssh/tech221.pem -r /Users/Admin/Documents/Virtualisation/app ubuntu@ec2-52-51-76-210.eu-west-1.compute.amazonaws.com:/home/ubuntu/`
 
 SSH in to the instance using the information given in the ec2 dashboard
-Updating our VM: sudo apt-get update -y
-Upgrading our VM: sudo apt-get upgrade -y
-Installing nginx: sudo apt-get install nginx -y
-Installs node.js:
-sudo apt install node.js -y
+
+Updating our VM: `sudo apt-get update -y`
+
+Upgrading our VM: `sudo apt-get upgrade -y`
+
+Installing nginx: `sudo apt-get install nginx -y`
+
+Installing node.js:
+
+`sudo apt install node.js -y`
+
 curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
 sudo apt install nodejs -y
-Installs pm2 globally: sudo npm install pm2 -y -g
-Checks status of nginx: systemctl status nginx
-Setting up the reverse proxy. Go to: /etc/nginx/sites-available
-Then: sudo rm -rf default
+
+Installs pm2 globally: `sudo npm install pm2 -y -g`
+
+Checks status of nginx: `systemctl status nginx`
+
+Setting up the reverse proxy. Go to: `/etc/nginx/sites-available`
+
+Then: `sudo rm -rf default`
+
 Then you'll need to create a new default file with the following properties:
+
 server {
     listen 80;
 
@@ -59,7 +71,11 @@ server {
         proxy_cache_bypass $http_upgrade;
     }
 }
+
 Set the database location as an env variable:
-sudo nginx -t
-cd /home/vagrant/
-export DB_HOST=mongodb://[ip of db instance]:27017/posts
+
+`sudo nginx -t`
+
+`cd /home/vagrant/`
+
+`export DB_HOST=mongodb://[ip of db instance]:27017/posts`
