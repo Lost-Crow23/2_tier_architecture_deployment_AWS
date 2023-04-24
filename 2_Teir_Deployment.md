@@ -12,9 +12,9 @@ Diagram
 
 <h4>Step 1</h4>
 
-Make a new instance in AWS with the same ubuntu 20.4 or 18.4 for less hassle in the future (used the third down from the "Browse AMI")
+Make a new instance in AWS with the same ubuntu 20.4 or 18.4 for less hassle in the future (used the third down from the "Browse AMI" then "community AMI")
  
-- Making an App instance.
+Making an App instance.
 
 - Connect the instance to the local host using the right security group, ssh and http groups. 
 
