@@ -49,8 +49,8 @@ Hint: use the SCP command (secure copy)
 - 1. The `-i` refers to the private key file to use for authentication
 - 2. The `-r` refers to the app folder pathway which should be copied recursively ( App folder Path copied from vscode )
 - 3. The `example@example.com:` specifies the remote host / destination directory for the copied folder.
-- 4. Ubuntu@ec2 (with ip address), uses the ssh login and the ec2 public dns
-- 5. :home/ubuntu, specifies where the copied file will go on the remote server
+- 4. `Ubuntu@ec2 (with ip address)`, uses the ssh login and the ec2 public dns
+- 5. `:home/ubuntu`, specifies where the copied file will go on the remote server
 
 <h4>Final SCP -</h4>
 
