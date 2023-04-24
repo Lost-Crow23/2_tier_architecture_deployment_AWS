@@ -76,9 +76,8 @@ App is now available on port 3000
 - Add `:3000` at the end like so 
 
 Setting up the app instance: 
-SSH in to the instance using the information given in the ec2 dashboard
 
-- You should be in the 
+SSH in to the instance using the information given in the ec2 dashboard
 
 Updating our VM: `sudo apt-get update -y`
 
@@ -89,34 +88,58 @@ Installing nginx: `sudo apt-get install nginx -y`
 Installing node.js:
 
 `sudo apt install node.js -y`
-
-curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
-sudo apt install nodejs -y
+`curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -` , download a newer version of node.js
+`sudo apt install nodejs -y`
 
 Installs pm2 globally: `sudo npm install pm2 -y -g`
 
 Checks status of nginx: `systemctl status nginx`
 
-Setting up the reverse proxy. Go to: `/etc/nginx/sites-available`
+Setting up the reverse proxy
+
+Step 1
+
+- `Cd` to the below folder to navigate inside the nginx configuration folder
+
+`/etc/nginx/sites-available`
 
 Then: `sudo rm -rf default`
 
+- To delete the current default file which you will replace OR you may create a new configuration file.
+
+We used `sudo nano default` to create a new conf file thus deleting our existing one.
+
 Then you'll need to create a new default file with the following properties:
 
-    server {
-        listen 80;
+`server_IP` EC2 IP address
 
-            server_name _;
+  server {
+     listen 80;
+     server_name <server_IP>;
 
-            location / {
-              proxy_pass http://192.168.10.100:3000;
-              proxy_http_version 1.1;
-              proxy_set_header Upgrade $http_upgrade;
-              proxy_set_header Connection 'upgrade';
-              proxy_set_header Host $host;
-              proxy_cache_bypass $http_upgrade;
-    }
+     location / {
+         proxy_pass http://<server_IP>:3000;
+         proxy_set_header Host $host;
+         proxy_set_header X-Real-IP $remote_addr;
+         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+         proxy_set_header X-Forwarded-Proto $scheme;
+   }
 }
+
+- `Cntrl+x` to exit and `y` to save and `enter` to save the name and exit
+
+Step 2
+
+- Enabling through a symbolic link to enable a new config file.
+- Our `default` is our config file we just created as above.
+
+`sudo ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default`
+
+Step 2.2
+
+If `failed to create symbolic link, file exists` we can unlink the file and link it again.
+
+`sudo unlink /etc/nginx/sites-enabled/default`
 
 Set the database location as an env variable:
 
