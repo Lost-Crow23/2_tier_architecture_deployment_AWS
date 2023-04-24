@@ -60,7 +60,20 @@ Step 3
 
 - Install Required Dependencies for node app in your AWS App git bash terminal.
 
-`sudo apt update -y` , `sudo apt upgrade -y` , 
+`sudo apt update -y` , `sudo apt upgrade -y` , `sudo apt install nginx` and follow the commands as illustrated as below, HOWEVER, since we had our provsion.sh file within our app folder, we provisioned it as below to execute the commands rather than manually doing so. 
+
+- `cd` into the app folder then `cat provsion.sh` , you may edit if necessary. 
+- Run our provsion.sh file `sudo ./provsion.sh`.
+
+NPM start 
+- Run `node app.js` to start app
+
+Final Step
+
+App is now available on port 3000
+
+- Copy the App Instance IPv4 address and paste in the browser
+- Add `:3000` at the end like so 
 
 Setting up the app instance: 
 SSH in to the instance using the information given in the ec2 dashboard
