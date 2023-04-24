@@ -31,3 +31,5 @@ Hint: use the SCP command (secure copy)
 - 5. :home/ubuntu, specifies where the copied file will go on the remote server
 
 Final SCP - `scp -i ~/.ssh/tech221.pem -r /Users/Admin/Documents/Virtualisation/app ubuntu@ec2-52-51-76-210.eu-west-1.compute.amazonaws.com:/home/ubuntu/`
+
+
