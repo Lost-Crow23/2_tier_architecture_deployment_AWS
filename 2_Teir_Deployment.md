@@ -56,6 +56,8 @@ Hint: use the SCP command (secure copy)
 
 `scp -i ~/.ssh/tech221.pem -r /Users/Admin/Documents/Virtualisation/app ubuntu@ec2-52-51-76-210.eu-west-1.compute.amazonaws.com:/home/ubuntu/`
 
+<img width="583" alt="scp command line" src="https://user-images.githubusercontent.com/126012715/234126956-c359ee42-29ea-4b57-a501-fc427597ed3e.png">
+
 <h4>Step 3</h4>
 
 - Install Required Dependencies for node app in your AWS App git bash terminal.
@@ -65,6 +67,8 @@ Hint: use the SCP command (secure copy)
 - `cd` into the app folder then `cat provsion.sh` , you may edit if necessary. 
 - Run our provsion.sh file `sudo ./provsion.sh`.
 
+<img width="588" alt="cat provsion 3000 port" src="https://user-images.githubusercontent.com/126012715/234127139-46358cac-cdad-4bed-a11f-ffd900256463.png">
+
 NPM start 
 - Run `node app.js` to start app
 
@@ -73,7 +77,9 @@ NPM start
 App is now available on port 3000
 
 - Copy the App Instance IPv4 address and paste in the browser
-- Add `:3000` at the end like so 
+- Add `:3000` at the end like so:
+
+<img width="1427" alt="52 51 76 210 3000 posts" src="https://user-images.githubusercontent.com/126012715/234129183-51f6e259-ee63-48cb-9efd-0fd0c39a9ffc.png">
 
 <h3>Setting up the app instance</h3>
 
@@ -160,6 +166,8 @@ Debugging !
 
 Use the following commands as above if errors occur.
 
+<img width="1434" alt="52 51 76 210 posts reverse proxy" src="https://user-images.githubusercontent.com/126012715/234129047-04cd68c5-04ef-4d0d-b3b6-bf806873419d.png">
+
 <h2>Setting up the DB instance</h2>
 
 Optional After-preparation once inside instance in terminal (If bind IP is also implemented as mongod.conf and to use the provisiondb.sh)
@@ -167,7 +175,7 @@ Optional After-preparation once inside instance in terminal (If bind IP is also 
 - To configure the files to make DB more accessible, we first move our virtualisation folder into our db instance as below.
 - 1. Git clone our `Virtualisation` folder from `GitHub` to move our environment folder to our ubuntu home within our db instance. As below:
 
-Add picture
+<img width="586" alt="Git Clone our Environment var folder" src="https://user-images.githubusercontent.com/126012715/234127504-d54f28c7-325e-4985-a393-bdc0e47d20b8.png">
 
 <h4>Step 1</h4>
 
@@ -215,6 +223,9 @@ Use the following commands to install MongoDB within the db instance.
 - 1. `cd /etc/`
 - 2. `sudo nano mongod.conf` , Scroll down and configure `bindip` to `0.0.0.0`
 - 3. Save (cntrl+x , y) and exit file (Enter)
+
+<img width="580" alt="ip" src="https://user-images.githubusercontent.com/126012715/234127634-ab9e839f-fbda-4e7b-bfa8-0730df662388.png">
+
 - 4. `sudo systemctl restart mongod`, restart mongod
 - 5. `sudo systemctl enable mongod`, enable mongod
 - 6. `sudo systemctl status mongod`, Check if running
