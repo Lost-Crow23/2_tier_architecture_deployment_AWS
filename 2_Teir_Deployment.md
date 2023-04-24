@@ -141,6 +141,71 @@ If `failed to create symbolic link, file exists` we can unlink the file and link
 
 `sudo unlink /etc/nginx/sites-enabled/default`
 
+Step 3
+
+- `sudo nginx -t` to check errors in the configuration
+- `sudo systemctl reload nginx` , reload Nginx
+- `sudo systemctl enable nginx`
+
+Navigate using `cd` to home then `cd app` 
+
+- `node app.js`, launch app in the background.
+- Paste the AWS app instance IP address into browser, without the port, to check if works then add `/posts` at the end.
+
+Debugging !
+
+`sudo lsof -i :3000` to kill the process within the port
+
+`sudo kill -9 PID`
+
+Use the following commands as above if errors occur.
+
+Setting up the DB instance
+
+Optional After-preparation once inside instance in terminal (If bind IP is also implemented as mongod.conf and to use the provisiondb.sh)
+
+- To configure the files to make DB more accessible, we first move our virtualisation folder into our db instance as below.
+- 1. Git clone our `Virtualisation` folder from `GitHub` to move our environment folder to our ubuntu home within our db instance. As below:
+
+Add picture
+
+Step 1 
+
+- Create a new AWS db instance.
+- 1. OS ubuntu 18.04 (20.04 does not allow mongodb to be installed)
+
+Step 2
+
+- Editing our Security group
+- Add an SSH key connection with your "IP"
+- Add Custom TCP connection with the port being `27017` (Mongodb) and IP as `anywhere, 0.0.0.0`
+- Add Custom TCP connection with the port being 3000 (Sparta App) and IP as `anywhere, 0.0.0.0`
+
+Step 3
+
+- Launch Instance
+- Connect instance using SSH connection and Git Bash terminal
+
+Step 4
+
+Use the following commands to install MongoDB within the db instance.
+
+ sudo apt update -y 
+
+ sudo apt upgrade -y
+
+ sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv D68FA50FEA312927
+
+ echo "deb https://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.2 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.2.list
+
+ sudo apt update -y 
+
+ sudo apt upgrade -y
+
+ sudo apt-get install -y mongodb-org=3.2.20 mongodb-org-server=3.2.20 mongodb-org-shell=3.2.20 mongodb-org-mongos=3.2.20 mongodb-org-tools=3.2.20
+
+ sudo systemctl start mongod
+
 Set the database location as an env variable:
 
 `sudo nginx -t`
