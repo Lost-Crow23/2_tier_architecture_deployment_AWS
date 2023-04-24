@@ -2,21 +2,30 @@
 
 Diagram 
 
+
+Delpoying our steps and goals:
+
+
+
 Step 1
 
-Make a new instance in AWS with the same ubuntu 20.4.
+Make a new instance in AWS with the same ubuntu 20.4 or 18.4 for less hassle in the future (used the third down from the "Browse AMI")
+ 
+- Making an App instance.
 
 - Connect the instance to the local host using the right security group, ssh and http groups. 
 
 - 1. From your admin git bash terminal use the `.ssh` command to get into the tech221.pem file by the .ssh folder.
 
-- 2. Open another terminal and get into the `.ssh` folder from admin.
+- Then use `chmod 400 tech221.pem` and `ssh -i "tech221.pem" ubuntu@ec2-52-51-76-210.eu-west-1.compute.amazonaws.com`
+
+- 2. Open another terminal and get into the `.ssh` folder from admin / local host.
 
 Step 2
 
-Connecting the app and copying our app folder from our `.ssh` into our AWS ubuntu instance app folder.
-- To get pathway use `cd` then `pwd` to return to directory pathway.
-- `scp` command into the `.ssh` folder in the git bash terminal not the ec2 ubuntu terminal.
+Connecting the app and copying our app folder from our `.ssh` into our AWS ubuntu instance folder.
+- To get pathway use `cd` then `pwd` to return to directory pathway (or use VScode to get pathway from the folder).
+- `scp` command into the `.ssh` folder in the git bash local host terminal not the ec2 ubuntu app terminal.
 
 Hint: use the SCP command (secure copy)
 
@@ -30,9 +39,14 @@ Hint: use the SCP command (secure copy)
 - 4. Ubuntu@ec2 (with ip address), uses the ssh login and the ec2 public dns
 - 5. :home/ubuntu, specifies where the copied file will go on the remote server
 
-Final SCP - `scp -i ~/.ssh/tech221.pem -r /Users/Admin/Documents/Virtualisation/app ubuntu@ec2-52-51-76-210.eu-west-1.compute.amazonaws.com:/home/ubuntu/`
+Final SCP - 
 
+`scp -i ~/.ssh/tech221.pem -r /Users/Admin/Documents/Virtualisation/app ubuntu@ec2-52-51-76-210.eu-west-1.compute.amazonaws.com:/home/ubuntu/`
+
+Setting up the app instance: 
 SSH in to the instance using the information given in the ec2 dashboard
+
+- You should be in the 
 
 Updating our VM: `sudo apt-get update -y`
 
@@ -57,18 +71,18 @@ Then: `sudo rm -rf default`
 
 Then you'll need to create a new default file with the following properties:
 
-server {
-    listen 80;
+    server {
+        listen 80;
 
-    server_name _;
+            server_name _;
 
-    location / {
-        proxy_pass http://192.168.10.100:3000;
-        proxy_http_version 1.1;
-        proxy_set_header Upgrade $http_upgrade;
-        proxy_set_header Connection 'upgrade';
-        proxy_set_header Host $host;
-        proxy_cache_bypass $http_upgrade;
+            location / {
+              proxy_pass http://192.168.10.100:3000;
+              proxy_http_version 1.1;
+              proxy_set_header Upgrade $http_upgrade;
+              proxy_set_header Connection 'upgrade';
+              proxy_set_header Host $host;
+              proxy_cache_bypass $http_upgrade;
     }
 }
 
