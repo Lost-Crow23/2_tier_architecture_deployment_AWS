@@ -1,7 +1,6 @@
 <h1>2 - tier architecture deployment in AWS</h1>
 
-Diagram 
-
+![2 teir diagram](https://user-images.githubusercontent.com/126012715/234211904-33035836-6d5b-41e7-b81a-8b9703ee1404.JPG)
 
 <h2>Delpoying our steps and goals:</h2>
 
