@@ -24,3 +24,5 @@ Internet Gateaway
 
 What is a subnet?
 
+- Range of IP addresses to create and deploy resources, like instances or load balancers.
+- They allow to segmenet your VPC into smaller networks, which can be used to isolate different resources and control network traffic.
