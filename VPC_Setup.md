@@ -77,6 +77,24 @@ Edit our routes as below.
 
 So the IGW is the internet gateaway. 
 
+Creating App and DB Instances
 
+Creating 2 ACLS
+
+Step 1 
+
+Create an AMI for App and DB from your running instances so we can stop or terminate the instances and our AMI would be there to cover it.
+
+Please follow this link which shows you how to create an AMI but a brief description is as below. 
+
+App Instance 
+
+- Choose running instance.
+- Action , Click on image. 
+- Choose a relevant name, e.g Name-tech221-app-ami then create.
+
+Instance from App AMI
+
+- 
 
 
