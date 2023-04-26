@@ -12,7 +12,7 @@ An private IP was assigned to me for this task as `10.0.9.0/24` so anywhere you 
 
 NOTE: We did not use a bastion subnet in this iteration.
 
-Diagram
+<img width="615" alt="VCP diagam ahhhh-man" src="https://user-images.githubusercontent.com/126012715/234439241-af09b328-f728-4e4a-8b46-d46854852ed9.png">
 
 <h3>Creation of VPC</h3>
 
