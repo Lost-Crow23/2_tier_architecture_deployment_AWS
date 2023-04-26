@@ -95,6 +95,60 @@ App Instance
 
 Instance from App AMI
 
-- 
+- Select AMI for app we just created
+- Launch Instance, Assign Name e.g name-tech221-app
+- Shows your current AMI as using
+- Keypair e.g tech221
+- Network settings - Personal VPC > Public subnet
+- Auto-Assign IP as enabled 
 
+After making our security group we can
 
+- Launch Instance and `.ssh` then connect the instance using `ubuntu` instead of `root` into the git bash terminal `cd` into `app` and use `npm start`.
+
+Instance from DB AMI
+
+- Select AMI for db we just created.
+- Launch Instance , Assign Name e.g name-tech221-db
+- Shows the current DB AMI as using
+- Keypair e.g tech221
+- Network settings - Personal VPC > private subnet
+- Auto-Assign IP as Disable
+
+As it is private, we won't be able to .ssh into it. Thus it won't work. 
+
+Create 2 Security groups
+
+- 1. App
+
+<img width="785" alt="app inbound and outbound SG" src="https://user-images.githubusercontent.com/126012715/234433222-8bcf7b45-ded2-4b53-8d13-093654924faf.png">
+
+- 2. db
+
+<img width="1334" alt="db SG" src="https://user-images.githubusercontent.com/126012715/234433609-2291899e-04c6-4df4-aa3e-7a9a93f3bd40.png">
+
+Create 2 Subnets in no pref AZ.
+
+1. Public: `10.0.0.0/16`
+- Assign Route table
+
+(Public Subnet was done above when creating our VPC, respectively)
+
+Private subnet for db instance
+
+2. Private: `10.0.91.0/24`
+- Assign to VPC and public ACL
+
+- 1. Go on VPC and click create subnet
+- 2. Select personal VPC
+- 3. Choose CIDR: `10.0.91.0/24` , Public(`10.0.0.0/16`)
+- 4. Create Route Table, Assign-Name
+- 5. Asscociate with VPC, then Creat
+- 6. Subnet Asssociation and edit
+- 7. Choose your private subnet and create
+
+SSH into the db from the app
+
+Step 1 
+
+- Go to Gitbash terminal 
