@@ -151,4 +151,22 @@ SSH into the db from the app
 
 Step 1 
 
-- Go to Gitbash terminal 
+- Go to Gitbash terminal and use the connect from app instance to access ubuntu.
+
+Step 2
+
+- `sudo nano .bashrc`  to update the new db IP address (private) 
+
+`export DB_HOST=mongodb://<ip_address_db>:27017/posts`
+
+Step 3
+
+- `source .bashrc`
+- `printenv DB_HOST`
+
+Final Step 
+
+- `cd` to `app` then `sudo systemctl status nginx` 
+- `npm start`
+- `node app.js` 
+- Insert app IP address into browser and should work. 
